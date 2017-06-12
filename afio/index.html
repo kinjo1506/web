@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+        <style>
+            body { margin: 0; }
+            div.amoad_native { margin: 8px; padding: 8px; width: calc(100vw - 34px); height: calc(85vh - 34px); border: 1px solid black; }
+        </style>
+        <script type="text/javascript">
+            window.addEventListener('DOMContentLoaded', function() {
+                var arg = {};
+                var pair = location.search.substring(1).split('&');
+                for (var i = 0; pair[i]; i++) {
+                    var kv = pair[i].split('=');
+                    arg[kv[0]] = kv[1];
+                }
+
+                var sid = arg['sid'] || ''
+                var uid = arg['uid'] || ''
+                var len = arg['len'] || 0
+
+                for (var i = 0; i < len; i++) {
+                    var div = document.createElement('div');
+                    div.setAttribute('class', 'amoad_native');
+                    div.setAttribute('data-sid', sid);
+                    div.setAttribute('data-idfa', uid);
+                    document.body.appendChild(div);
+
+                    var script = document.createElement('script');
+                    script.setAttribute('src', 'https://stg-j.amoad.net/js/n.js');
+                    script.setAttribute('type', 'text/javascript');
+                    script.setAttribute('charset', 'utf-8');
+                    document.body.appendChild(script);
+                }
+            });
+        </script>
+    </head>
+    <body>
+    </body>
+</html>
